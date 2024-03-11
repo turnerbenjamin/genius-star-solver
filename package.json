@@ -1,8 +1,8 @@
 {
-  "name": "genius-star-solver",
+  "name": "@turner-benjamin/genius-star-solver",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
+  "description": "A simple solver for Genius Star puzzles",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
