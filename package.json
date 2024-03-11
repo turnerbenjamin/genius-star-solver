@@ -1,5 +1,5 @@
 {
-  "name": "@turner-benjamin/genius-star-solver",
+  "name": "@turner_benjamin/genius-star-solver",
   "version": "1.0.0",
   "type": "module",
   "description": "A simple solver for Genius Star puzzles",
