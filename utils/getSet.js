@@ -1,5 +1,5 @@
 import pieceDictionary from "./pieceDictionary";
-import piecePlacementsByPiece from "../cashedPlacements/piecePlacementsByPiece";
+import piecePlacementsByPiece from "../cachedPlacements/piecePlacementsByPiece";
 import Piece from "../models/Piece";
 
 export default (isBonus = true) => {

@@ -1,4 +1,4 @@
-import piecePlacementsByCell from "../cashedPlacements/piecePlacementsByCell";
+import piecePlacementsByCell from "../cachedPlacements/piecePlacementsByCell";
 import CornerCellAnalysis from "../models/CornerCellAnalysis";
 import Dice from "../models/Dice";
 import PlacementStack from "../models/PlacementStack";
