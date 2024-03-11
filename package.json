@@ -2,6 +2,10 @@
   "name": "@turner_benjamin/genius-star-solver",
   "version": "1.0.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/turnerbenjamin/genius-star-solver"
+  },
   "description": "A simple solver for Genius Star puzzles",
   "main": "index.js",
   "scripts": {
