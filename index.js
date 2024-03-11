@@ -17,16 +17,16 @@ function runSolve(blockers, options) {
 
 // *** ASYNC ***
 /**
- * Given a set of blockers, returns a solution count and an array of solutions.
+ * Given a set of blockers determined by a dice roll, returns a solution count and an array of solutions.
  *
- * @param {number[]} blockers - A set of 7 integers between 1-48
+ * @param {number[]} roll - A set of 7 integers between 1-48
  * @param {bool} options.isBonus - Whether bonus set should be used
  * @param {number} options.solutionsRepositoryMaxLength - Max solutions to return
  * @param {number} options.solutionLimit - Max solutions to track
  * @returns {object}
  */
-async function asyncSolve(blockers, options) {
-  const { data: res } = await runSolve(blockers, options);
+async function asyncSolve(roll, options) {
+  const { data: res } = await runSolve(roll, options);
   return res;
 }
 

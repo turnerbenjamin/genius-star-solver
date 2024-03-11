@@ -48,16 +48,6 @@ export default class Dice {
   }
 
   /**
-   * Returns a dictionary of genius star dice
-   * with an array of values on each die
-   *
-   * @returns [object] Dictionary of dice
-   */
-  get dice() {
-    return this.#diceToValueMap;
-  }
-
-  /**
    * For keys 1-7, returns an array of values
    * stored on the relevant die
    *

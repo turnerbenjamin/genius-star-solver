@@ -35,22 +35,21 @@ export default class Solver {
 
   // *** SOLVE ***
   /**
-   * Given a set of blockers, returns a solution count and an array of solutions.
+   * Given a set of blockers determined by a dice roll, returns a solution count and an array of solutions.
    *
-   * @param {number[]} blockers - A set of 7 integers between 1-48
+   * @param {number[]} roll - A set of 7 integers between 1-48
    * @param {bool} options.isBonus - Whether bonus set should be used
    * @param {number} options.solutionsRepositoryMaxLength - Max solutions to return
    * @param {number} options.solutionLimit - Max solutions to track
    * @returns {object}
    */
 
-  solve(blockers, options) {
+  solve(roll, options) {
     try {
       const t1 = performance.now();
 
       //GET SET
       this.#isBonus = options?.isBonus === true || false;
-      console.log(this.#isBonus);
       this.#set = this.#getSet(this.#isBonus);
 
       //Set max solution repository lenth
@@ -58,9 +57,9 @@ export default class Solver {
         options?.solutionsRepositoryMaxLength || 1;
       //Set solutions to find limit
       this.solutionLimit = options?.solutionLimit;
-      //Validate Blockers and Initialise Solution
-      this.#validateBlockers(blockers);
-      this.#initialiseSolution(blockers);
+      //Validate roll and Initialise Solution
+      this.#validateRoll(roll);
+      this.#initialiseSolution(roll);
 
       //Get Solutions
       this.#getSolutions();
@@ -275,11 +274,11 @@ export default class Solver {
    * @param {[number]} roll
    * @returns bool
    */
-  #validateBlockers(blockers) {
-    const isValid = this.#dice.isValidRoll(blockers);
+  #validateRoll(roll) {
+    const isValid = this.#dice.isValidRoll(roll);
     if (!isValid)
       throw new Error(
-        "Invalid argument for blockers: Pass an array of numbers representing a valid roll of the genius star dice."
+        "Invalid argument for roll: Pass an array of numbers representing a valid roll of the genius star dice."
       );
   }
 
