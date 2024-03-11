@@ -23,7 +23,7 @@
     A simple solver for Genius Star puzzles
     <br />
     <br />
-    <a href="https://github.com/turnerbenjamin/genius-star-solver">View Demo</a>
+    <a href="https://ben-turner.dev/genius-star">View Demo</a>
     ·
     <a href="https://github.com/turnerbenjamin/genius-star-solver/issues">Report Bug</a>
     ·
@@ -81,7 +81,7 @@ The default export is a solver object with a single public method, solve. You ca
 with an array of 7 integers representing a roll of the dice.
 
 ```js
-import solver from "genius-star-solver";
+import solver from "@turner_benjamin/genius-star-solver";
 ```
 
 ```js
@@ -109,7 +109,7 @@ Each solution is a dictionary. The key being the cell number and the value a pie
 A dictionary of piece types may be imported as a named import:
 
 ```js
-import { pieceDictionary } from "genius-star-solver";
+import { pieceDictionary } from "@turner_benjamin/genius-star-solver";
 ```
 
 #### Dice
@@ -119,7 +119,7 @@ star puzzle.
 A dice object may be imported as a named import:
 
 ```js
-import { dice } from "genius-star-solver";
+import { dice } from "@turner_benjamin/genius-star-solver";
 ```
 
 ```js
@@ -143,17 +143,38 @@ You may pass an options object as a second argument to the solve method:
 #### Async
 
 The solve method is expensive, particularly when the solution limit is set to a high value.
-You may import asyncSolve as a named import.
 
-asyncSolve uses a web worker to run solve asynchronously and returns a promise.
+The demo above uses a web worker to run solve asynchronously:
 
 ```js
-asyncSolve(roll, options).then((solveReport) => {
-  console.log(solveReport);
-});
+//worker.js
+import solver from "@turner_benjamin/genius-star-solver";
+
+self.onmessage = ({ data: args }) => {
+  const { roll, options } = args;
+  const solves = solver.solve(roll, options);
+  postMessage(solves);
+};
 ```
 
-The demo, a Vite & React app, uses this function, however, I am not sure whether it will work in other environments.
+```js
+//asyncSolve.js
+import getWorker from "./worker.js?worker";
+
+function runSolve(roll, options) {
+  return new Promise((resolve, reject) => {
+    const worker = getWorker();
+    worker.postMessage({ roll, options });
+    worker.onmessage = resolve;
+    worker.onerror = reject;
+  });
+}
+
+export default async function asyncSolve(roll, options) {
+  const { data: res } = await runSolve(roll, options);
+  return res;
+}
+```
 
 <!-- LICENSE -->
 
