@@ -1,14 +1,13 @@
 import pieceDictionary from "./utils/pieceDictionary";
-import getWorker from "./workerSolve.js?worker";
 import initialiseSolver from "./utils/initialiseSolver";
 import Dice from "./models/Dice";
 
 const dice = new Dice();
 const solver = initialiseSolver();
+const worker = new Worker("./workerSolve.js");
 
 function runSolve(blockers, options) {
   return new Promise((resolve, reject) => {
-    const worker = getWorker();
     worker.postMessage({ blockers, options });
     worker.onmessage = resolve;
     worker.onerror = reject;
